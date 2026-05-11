@@ -1,0 +1,25 @@
+projection implementation in class ZBP_C_JUGADORES_02 unique;
+strict ( 2 );
+extensible;
+use draft;
+use side effects;
+define behavior for ZC_JUGADORES_02 alias ZcJugadores02
+extensible
+use etag
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+
+  // Ini Botón Subida de Sueldo
+  use action subir_gol;
+  use action cambiar_nacionalidad;
+
+}

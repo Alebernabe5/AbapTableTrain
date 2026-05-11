@@ -1,0 +1,58 @@
+managed implementation in class ZBP_R_JUGADORES_02 unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_JUGADORES_02 alias ZrJugadores02
+persistent table ZJUGADORES_02
+extensible
+draft table ZJUGADORES_02_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+{
+  field ( mandatory : create )
+   ID;
+
+  field ( readonly )
+   CreatedBy,
+   CreatedAt,
+   LastChangedBy,
+   LastChangedAt,
+   LocalLastChangedAt;
+
+  field ( readonly : update )
+   ID;
+
+
+  create;
+  update;
+  delete;
+
+  action subir_gol result [1] $self;
+//  Cambiar nacionalidad
+action cambiar_nacionalidad parameter ZABS_MODIFICAR_NACIONALIDAD_02 result [1] $self;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZJUGADORES_02 corresponding extensible
+  {
+    ID = ID;
+    Nombre = NOMBRE;
+    Equipo = EQUIPO;
+    Nacionalidad = NACIONALIDAD;
+    Salario = SALARIO;
+    Goles = GOLES;
+    Ntarjetas = NTARJETAS;
+    IsActive = IS_ACTIVE;
+    CreatedBy = CREATED_BY;
+    CreatedAt = CREATED_AT;
+    LastChangedBy = LAST_CHANGED_BY;
+    LastChangedAt = LAST_CHANGED_AT;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+  }
+
+}
